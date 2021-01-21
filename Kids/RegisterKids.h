@@ -4,8 +4,19 @@
 
 #ifndef NAVITEC_REGISTERKIDS_H
 #define NAVITEC_REGISTERKIDS_H
-int Register();
+struct kid
+{
+    int node;
+    char id[20];
+    char fullName[40];
+    char username[20];
+    char email[20];
+    char birthday[20];
+    char age[20];
+    char needs[50];
+};
+void saveKidFile(struct kid kid1);
 int read();
-int save (struct person *h, int num_students);
+void RegisterKid();
 
 #endif //NAVITEC_REGISTERKIDS_H
