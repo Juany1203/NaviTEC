@@ -49,8 +49,6 @@ void RegisterKid(){
     scanf("%s", needs);
 
 
-
-
     struct kid kid1 ;
     kid1.node=1;
     strcpy(kid1.id,id);
@@ -67,11 +65,16 @@ void RegisterKid(){
 }
 
 
+void saveKids(struct kid *kids){
+
+
+}
+
 void saveKidFile (struct kid kid1){
     FILE *outfile;
 
     // open file for writing
-    outfile = fopen ("kids.dat", "w");
+    outfile = fopen ("kids.dat", "a");
     if (outfile == NULL)
     {
         fprintf(stderr, "\nError opend file\n");
@@ -83,6 +86,7 @@ void saveKidFile (struct kid kid1){
     printf ("NOMBRE = %d USERNAME = %s  EMAIL = %s\n", kid1.node,
             kid1.username,kid1.email);
     fwrite (&kid1, sizeof(struct kid), 1, outfile);
+//    fwrite (&kid1, sizeof(struct kid), 1, outfile);
 
 
     if(fwrite != 0)
@@ -113,6 +117,8 @@ void ListsKids(){
 
     // read file contents till end of file
     while(fread(&input, sizeof(struct kid), 1, infile))
+//        saveKidFile(input);
+//        saveKidFile(input);
         printf ("id = %s fullname = %s %s\n", input.id,
                 input.fullName,input.username);
 
