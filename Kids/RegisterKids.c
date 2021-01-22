@@ -47,28 +47,41 @@ void RegisterKid(){
 
     printf("7.Ingrese las necesidades especiales  del Niño/Niña, en caso no haber ninguna porfa escriba 'Ninguna' :\n");
     scanf("%s", needs);
-        // Output the Word
-    struct kid kid1 = {1,  id,fullName,username,email,birthday,age,needs};
+
+
+
+
+    struct kid kid1 ;
+    kid1.node=1;
+    strcpy(kid1.id,id);
+    strcpy(kid1.fullName,fullName);
+    strcpy(kid1.username,username);
+    strcpy(kid1.email,email);
+    strcpy(kid1.birthday,birthday);
+    strcpy(kid1.age,age);
+    strcpy(kid1.needs,needs);
     saveKidFile(kid1);
+
+
+
 }
 
 
-void saveKidFile (struct kid kid1)
-{
+void saveKidFile (struct kid kid1){
     FILE *outfile;
 
     // open file for writing
-    outfile = fopen ("person.dat", "w");
+    outfile = fopen ("kids.dat", "w");
     if (outfile == NULL)
     {
         fprintf(stderr, "\nError opend file\n");
         exit (1);
     }
 
-//    struct kid input1 = {1, "rohan", "sharma"};
-//    struct kid input2 = {2, "mahendra", "dhoni"};
-//    struct kid input3 = {1, "Sahid", "Rick"};
     // write struct to file
+
+    printf ("NOMBRE = %d USERNAME = %s  EMAIL = %s\n", kid1.node,
+            kid1.username,kid1.email);
     fwrite (&kid1, sizeof(struct kid), 1, outfile);
 
 
@@ -82,6 +95,32 @@ void saveKidFile (struct kid kid1)
 
 
 }
+
+void ListsKids(){
+    FILE *infile;
+    struct kid input;
+
+    // Open person.dat for reading
+    infile = fopen ("kids.dat", "r");
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+    printf("\nEste es el listado de los niños  y niñas en el sistema \n");
+
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct kid), 1, infile))
+        printf ("id = %s fullname = %s %s\n", input.id,
+                input.fullName,input.username);
+
+    // close file
+    fclose (infile);
+
+}
+
 
 
 int read ()

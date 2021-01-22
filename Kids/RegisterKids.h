@@ -13,9 +13,10 @@ struct kid
     char email[20];
     char birthday[20];
     char age[20];
-    char needs[50];
+    char needs[40];
 };
 void saveKidFile(struct kid kid1);
+void ListsKids();
 int read();
 void RegisterKid();
 
