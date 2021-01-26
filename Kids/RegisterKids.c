@@ -129,28 +129,151 @@ void ListsKids(){
 
 
 
-int read ()
-{
-//    FILE *infile;
-//    struct person input;
-//
-//    // Open person.dat for reading
-//    infile = fopen ("person.dat", "r");
-//    if (infile == NULL)
-//    {
-//        fprintf(stderr, "\nError opening file\n");
-//        exit (1);
-//    }
-//
-//    // read file contents till end of file
-//    while(fread(&input, sizeof(struct person), 1, infile))
-//        printf ("id = %d name = %s %s\n", input.id,
-//                input.fname, input.lname);
-//
-//    // close file
+void EditKid(char *id ,int option,char *newValue){
+    FILE *infile;
+    FILE *file;
+    struct kid input;
+
+    // Open person.dat for reading
+    infile = fopen ("kids.dat", "r+");
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+
+
+    struct kid arr_kid [CountKids()];
+    int amountKids=CountKids();
+    int cont=0;
+    int flag=0;
+
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct kid), 1, infile))
+        if (strcmp(input.id,id)==0){
+            printf("\nSI LO ENCONTE");
+            if(option==1){
+                strcpy(input.id,newValue);
+            }
+            if(option==2){
+                strcpy(input.fullName,newValue);
+            }
+            if(option==3){
+                strcpy(input.username,newValue);
+            }
+            if(option==4){
+                strcpy(input.email,newValue);
+            }
+            if(option==5){
+                strcpy(input.birthday,newValue);
+            }
+            if(option==6){
+                strcpy(input.age,newValue);
+            }
+            if(option==7){
+                strcpy(input.needs,newValue);
+            }
+            arr_kid[cont]=input;
+            flag=1;
+        }
+        else{
+//            printf("NO LO ENCONTRE");
+            arr_kid[cont]=input;
+        }
+    cont++;
+
+//        saveKidFile(input);
+//        saveKidFile(input);
 //    fclose (infile);
-//
-   return 0;
+    if(flag){
+        fclose(fopen("kids.dat", "w"));
+        printf("\nELIMINE EL ARCHIVO");
+        file = fopen("kids.dat", "w");
+        if (infile == NULL) {
+            fprintf(stderr, "\nError opening file\n");
+            exit(1);
+        }
+        for (int i=0;i<(amountKids);i++) {
+            printf("\nVAMOS A VOLVER A GREGAR UN NIÑO AL SISTEMA");
+
+            fwrite(&arr_kid[i], sizeof(struct kid), 1, file);
+        }
+        fclose(file);
+//        remove("")
+    }
+    else{
+        printf("NO EXISTE");
+    }
+
+    fclose (infile);
+
+    // close files
+
+
+}
+
+
+
+int ExistKid(char *id){
+    FILE *infile;
+    struct kid input;
+
+    // Open person.dat for reading
+    infile = fopen ("kids.dat", "r+");
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+    printf("\nEste es el listado de los ayudantes en el sistema \n");
+    printf("\nEste es el valior de la ID %s ",id);
+
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct kid), 1, infile))
+        if (strcmp(input.id,id)==0){
+            return 1;
+        }
+
+
+
+    // close file
+    fclose (infile);
+    return 0;
+
+}
+
+
+
+
+
+int CountKids ()
+{
+    FILE *infile;
+    struct kid input;
+    int amount=0;
+
+    // Open person.dat for reading
+    infile = fopen ("kids.dat", "r");
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct kid), 1, infile))
+        amount++;
+
+    // close file
+    fclose (infile);
+
+    printf("\nTHE AMOUNT OF KIDS ARE: %d",amount);
+
+   return amount;
 }
 
 

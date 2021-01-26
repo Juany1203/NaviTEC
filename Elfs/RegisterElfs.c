@@ -108,5 +108,157 @@ void ListsElfs(){
 
 }
 
+void EditElf(char *id ,int option,char *newValue){
+    FILE *infile;
+    FILE *file;
+    struct elf input;
+
+    // Open person.dat for reading
+    infile = fopen ("elfs.dat", "r+");
+
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+    file = fopen("elfs-tmp.dat", "w");
+
+    if (file == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+
+
+    struct elf arr_elf[CountElfs()];
+    int amountElfs=CountElfs();
+    int cont=0;
+    int flag=0;
+
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct elf), 1, infile))
+        if (strcmp(input.id,id)==0){
+            printf("\nSI LO ENCONTE");
+            if(option==1){
+                strcpy(input.id,newValue);
+            }
+            if(option==2){
+                strcpy(input.fullName,newValue);
+            }
+            if(option==3){
+                strcpy(input.job,newValue);
+            }
+            if(option==4){
+                strcpy(input.functions,newValue);
+            }
+            if(option==5){
+                strcpy(input.startDate,newValue);
+            }
+            fwrite (&input, sizeof(struct elf), 1, file);
+//            arr_elf[cont]=input;
+//            flag=1;
+        }
+        else{
+            printf("NO LO ENCONTRE");
+            fwrite (&input, sizeof(struct elf), 1, file);
+//            arr_elf[cont]=input;
+        }
+        cont++;
+
+//        saveKidFile(input);
+//        saveKidFile(input);
+//    fclose (infile);
+    fclose(infile);
+    fclose(file);
+    remove("elf.dat");
+    rename("elf-tmp.dat","elf.dat");
+    if(flag){
+//        fclose(fopen("elfs.dat", "w"));
+        printf("\nELIMINE EL ARCHIVO");
+        file = fopen("elfs-tmp.dat", "w");
+        if (infile == NULL) {
+            fprintf(stderr, "\nError opening file\n");
+            exit(1);
+        }
+        for (int i=0;i<(amountElfs);i++) {
+            printf("VAMOS A VOLVER A GREGAR UN ELFO AL SISTEMA");
+            saveElfFile(arr_elf[i]);
+           fwrite(&arr_elf[i], sizeof(struct elf), 1, file);
+        }
+
+//        remove("")
+    }
+
+
+
+//        fclose (infile);
+
+    // close files
+
+
+}
+
+
+
+int ExistElf(char *id){
+    FILE *infile;
+    struct elf input;
+
+    // Open person.dat for reading
+    infile = fopen ("elfs.dat", "r+");
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+    printf("\nEste es el listado de los ayudantes en el sistema \n");
+    printf("\nEste es el valior de la ID %s ",id);
+
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct elf), 1, infile))
+        if (strcmp(input.id,id)==0){
+            return 1;
+        }
+
+//        saveKidFile(input);
+//        saveKidFile(input);
+    printf ("id = %s Nombre = %s  Trabajo= %s\n", input.id,
+            input.fullName,input.job);
+
+    // close file
+    fclose (infile);
+    return 0;
+
+}
+
+int CountElfs(){
+    FILE *infile;
+    struct elf input;
+    int amount=0;
+
+    // Open person.dat for reading
+    infile = fopen ("elfs.dat", "r");
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct elf), 1, infile))
+        amount++;
+
+    // close file
+    fclose (infile);
+
+    printf("\nTHE AMOUNT OF ELFS ARE: %d",amount);
+
+    return amount;
+}
+
 
 

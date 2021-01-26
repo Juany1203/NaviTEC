@@ -18,6 +18,10 @@ struct elf
 void saveElfFile(struct elf elf1);
 void ListsElfs();
 void RegisterElf();
+void EditElf(char *id,int option,char *newValue);
+int  CountElfs();
+int  ExistElf(char *id);
+
 
 
 #endif //NAVITEC_REGISTERELFS_H

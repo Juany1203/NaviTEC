@@ -17,7 +17,9 @@ struct kid
 };
 void saveKidFile(struct kid kid1);
 void ListsKids();
-int read();
 void RegisterKid();
+void EditKid(char *id,int option,char *newValue);
+int  CountKids();
+int  ExistKid(char *id);
 
 #endif //NAVITEC_REGISTERKIDS_H

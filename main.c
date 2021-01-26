@@ -2,6 +2,7 @@
 #include <string.h>
 #include "Kids/RegisterKids.h"
 #include "Elfs/RegisterElfs.h"
+#include "Toys/RegisterToys.h"
 //created by chaitanya
 
 void function(char *myString)
@@ -17,16 +18,39 @@ void function(char *myString)
 
 int main()
 {
-   RegisterElf();
-   ListsElfs();
-//    char needs[50];
-//    printf("7.Ingrese las necesidades especiales  del Niño/Niña, en caso no haber ninguna porfa escriba 'Ninguna' :\n");
-//    scanf("%s", needs);
-//    function(needs);
+//ListsKids();
+//EditKid("SIHAN",2,"EL-MOLESTO");
+//ListsKids();
+//    ListsElfs();
+//EditElf("13",2,"ELLAESA");
+//RegisterElf();
+//  ListsElfs();
 
+//RegisterElf();
+//RegisterElf();
+//RegisterElf();
 
+    tpunteroa raiz;
+    int dato, esCompleto=1, aux;
+    raiz = NULL;
 
+    /*
+        Insertamos valores creando el siguiente Arbol:
 
-    return 0;
+                       4
+                      / \
+                     1   6
+                        / \
+                       5   9
+    */
 
+    insertarArbol (&raiz, 4);
+    insertarArbol (&raiz, 1);
+    insertarArbol (&raiz, 6);
+    insertarArbol (&raiz, 9);
+    insertarArbol (&raiz, 5);
+
+    //Imprimimos el Arbol en orden
+    printf ("Arbol impreso: ");
+    imprimirArbol (raiz);
 }

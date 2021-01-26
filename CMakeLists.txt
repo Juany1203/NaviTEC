@@ -7,4 +7,4 @@ include_directories(.)
 
 add_executable(NaviTEC
         main.c
-        main.h Kids/RegisterKids.c Kids/RegisterKids.h Elfs/RegisterElfs.c Elfs/RegisterElfs.h)
+        main.h Kids/RegisterKids.c Kids/RegisterKids.h Elfs/RegisterElfs.c Elfs/RegisterElfs.h Toys/RegisterToys.c Toys/RegisterToys.h)
