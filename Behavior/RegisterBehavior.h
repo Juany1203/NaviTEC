@@ -7,13 +7,20 @@
 
 struct behavior
 {
+//    int node;
+    char parentName[20];
+    char kidsId[20];
+    char date[20];
+    char description[40];
+    char indications[20];
 
-    char parentsName[40];
-    char kidId[20];
-    char email[20];
-    char birthday[20];
-    char age[20];
-    char needs[40];
 };
+
+void saveBehaviorFile(struct behavior behavior1);
+void ListsBehavior();
+void RegisterBehavior();
+void EditElf(char *id,int option,char *newValue);
+int  CountBehavior();
+int  ExistBehavior(char *id);
 
 #endif //NAVITEC_REGISTERBEHAVIOR_H
