@@ -8,6 +8,7 @@
 #include "Elfs/RegisterElfs.h"
 #include "Behavior/RegisterBehavior.h"
 #include "Toys/RegisterToys.h"
+#include "Letters/RegisterLetters.h"
 
 void Menu(){
     int exit=0;
@@ -69,7 +70,13 @@ void Menu(){
 }
 int main()
 {
-    Menu();
+//    tpunteroa raiz;
+//    raiz = NULL;
+//    rearmarArbol(&raiz);
+//    RegisterLetter(raiz);
+ListsLetter();
+
+//    Menu();
 //    ListsElfs();
 //RegisterElf();
 //ListsKids();

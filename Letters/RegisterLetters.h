@@ -5,7 +5,7 @@
 #ifndef NAVITEC_REGISTERLETTERS_H
 #define NAVITEC_REGISTERLETTERS_H
 
-
+#include "Toys/RegisterToys.h"
 struct letter
 {
 //    int node;
@@ -17,7 +17,7 @@ struct letter
 
 void saveLettersFile(struct letter letter1);
 void ListsLetter();
-void RegisterLetter();
+void RegisterLetter(tpunteroa raiz);
 void EditLetter(char *id,int option,char *newValue);
 int  CountLetters();
 int  ExistLetter(char *id);

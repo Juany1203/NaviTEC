@@ -180,7 +180,7 @@ void rearmarArbol (tpunteroa raiz){
 //        saveKidFile(input);
 //        saveKidFile(input);
         insertarArbolRepeat(raiz,input.valor,input);
-        printf (" Nombre = %s  Categoria= %s\n", input.name,
+        printf (" ID %d Nombre = %s  Categoria= %s\n", input.valor,input.name,
                 input.category);
 
     // close file
