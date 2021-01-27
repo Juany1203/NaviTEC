@@ -6,9 +6,12 @@
 #include "Kids/RegisterKids.h"
 #include "Elfs/RegisterElfs.h"
 #include "Behavior/RegisterBehavior.h"
+#include "Toys/RegisterToys.h"
 
 void Menu(){
     int exit=0;
+    tpunteroa raiz;
+    raiz = NULL;
     while (!exit){
         int opcion;
         printf("\n.Este es el Menu principal de NaviTEC,Tengo las siguientes opciones\n"
@@ -18,7 +21,9 @@ void Menu(){
                "4.Lista de los Ayudante de Santa \n"
                "5.Registrar el comportamiento de un niño\n"
                "6.Listar los comportamientos de todos los niños\n"
-               "7.Salir del Programa\n");
+               "7.Registrar un juguete\n"
+               "8.Listar los jueguetes disponibles\n"
+               "9.Salir del Programa\n");
         printf(".Ingrese el numero de la opcion que desea:\n");
         scanf("%d",&opcion);
         if(opcion==1){
@@ -40,6 +45,12 @@ void Menu(){
             ListsBehavior();
         }
         if(opcion==7){
+            registerToy(&raiz);
+        }
+        if(opcion==8){
+            imprimirArbol(raiz);
+        }
+        if(opcion==9){
             exit=1;
             printf("Muchas gracias Regrese Luego");
         }
