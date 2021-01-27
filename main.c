@@ -2,6 +2,7 @@
 
 //
 #include <stdio.h>
+#include <string.h>
 #include "Places/RegisterPlaces.h"
 #include "Kids/RegisterKids.h"
 #include "Elfs/RegisterElfs.h"
@@ -12,6 +13,7 @@ void Menu(){
     int exit=0;
     tpunteroa raiz;
     raiz = NULL;
+    rearmarArbol(&raiz);
     while (!exit){
         int opcion;
         printf("\n.Este es el Menu principal de NaviTEC,Tengo las siguientes opciones\n"
@@ -59,7 +61,11 @@ void Menu(){
 }
 int main()
 {
-    Menu();
-
+//    Menu();
+    tpunteroa raiz;
+    raiz = NULL;
+    rearmarArbol(&raiz);
+    imprimirArbol(raiz);
+    return 0;
     return 0;
 }

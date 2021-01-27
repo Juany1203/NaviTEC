@@ -74,6 +74,17 @@ void insertarArbol (tpunteroa *raiz,int dato){
         strcpy((*raiz)->age,age);
         (*raiz)->cost = cost;
 
+        struct snodoa toy;
+        toy.valor = dato;
+        strcpy(toy.name,name);
+        strcpy(toy.description,name);
+        strcpy(toy.category,category);
+        strcpy(toy.age,age);
+        toy.cost=cost;
+
+        saveToyFile(toy);
+
+
     }else{
         if (dato <= (*raiz)->valor){
             insertarArbol (&(*raiz)->izq, dato);
@@ -82,6 +93,100 @@ void insertarArbol (tpunteroa *raiz,int dato){
         }
     }
 }
+
+
+void saveToyFile (struct snodoa toy){
+    printf("ESTE ES EL NOMBRE %s",toy.name);
+    FILE *outfile;
+
+    // open file for writing
+    outfile = fopen ("toys.dat", "a");
+    if (outfile == NULL)
+    {
+        fprintf(stderr, "\nError opend file\n");
+        exit (1);
+    }
+
+    // write struct to file
+
+
+    fwrite (&toy, sizeof(struct snodoa), 1, outfile);
+//    fwrite (&kid1, sizeof(struct kid), 1, outfile);
+
+
+    if(fwrite != 0){
+
+    }
+//        printf("EL AYUDANTE SE GUARDO EN EL SISTEMA CORRECTAMENTE!\n");
+    else
+        printf("error writing file !\n");
+
+    // close file
+    fclose (outfile);
+
+
+}
+
+
+
+
+//ARBOL-INSERTAR//
+void insertarArbolRepeat (tpunteroa *raiz,int dato,struct snodoa info){
+    if (*raiz == NULL){
+        *raiz = malloc(sizeof(tnodoa));
+//       (*raiz)->valor = dato;
+        (*raiz)->izq = NULL;
+        (*raiz)->der = NULL;
+
+        (*raiz)->valor = dato;
+        strcpy((*raiz)->name,info.name);
+        strcpy((*raiz)->description,info.description);
+        strcpy((*raiz)->category,info.category);
+        strcpy((*raiz)->age,info.age);
+        (*raiz)->cost = info.cost;
+
+
+
+
+    }else{
+        if (dato <= (*raiz)->valor){
+            insertarArbolRepeat (&(*raiz)->izq, dato,info);
+        }else{
+            insertarArbolRepeat (&(*raiz)->der, dato,info);
+        }
+    }
+}
+
+
+
+
+void rearmarArbol (tpunteroa raiz){
+    FILE *infile;
+    struct snodoa input;
+
+    // Open person.dat for reading
+    infile = fopen ("toys.dat", "r");
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+    printf("\nEste es el listado de los Juguetes   \n");
+
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct snodoa), 1, infile))
+//        saveKidFile(input);
+//        saveKidFile(input);
+        insertarArbolRepeat(raiz,input.valor,input);
+        printf (" Nombre = %s  Categoria= %s\n", input.name,
+                input.category);
+
+    // close file
+    fclose (infile);
+}
+
 
 
 void getToys(tpunteroa raiz){
@@ -185,6 +290,9 @@ tpunteroa buscar (tpunteroa raiz, int dato){
         }
     }
 }
+
+
+
 
 
 
