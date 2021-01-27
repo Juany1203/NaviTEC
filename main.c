@@ -19,13 +19,15 @@ void Menu(){
         printf("\n.Este es el Menu principal de NaviTEC,Tengo las siguientes opciones\n"
                "1.Registrar un niño\n"
                "2.Lista de los niños \n"
-               "3.Registrar un Ayudante de Santa\n"
-               "4.Lista de los Ayudante de Santa \n"
-               "5.Registrar el comportamiento de un niño\n"
-               "6.Listar los comportamientos de todos los niños\n"
-               "7.Registrar un juguete\n"
-               "8.Listar los jueguetes disponibles\n"
-               "9.Salir del Programa\n");
+               "3.Editar la informacion de los niños \n"
+               "4.Registrar un Ayudante de Santa\n"
+               "5.Lista de los Ayudante de Santa \n"
+               "6.Editar a un  Ayudante de Santa \n"
+               "7.Registrar el comportamiento de un niño\n"
+               "8.Listar los comportamientos de todos los niños\n"
+               "9.Registrar un juguete\n"
+               "10.Listar los jueguetes disponibles\n"
+               "11.Salir del Programa\n");
         printf(".Ingrese el numero de la opcion que desea:\n");
         scanf("%d",&opcion);
         if(opcion==1){
@@ -35,24 +37,30 @@ void Menu(){
             ListsKids();
         }
         if(opcion==3){
-            RegisterElf();
+            changeKid();
         }
         if(opcion==4){
-            ListsElfs();
+            RegisterElf();
         }
         if(opcion==5){
-            RegisterBehavior();
+            changeElf();
         }
         if(opcion==6){
-            ListsBehavior();
+            ListsElfs();
         }
         if(opcion==7){
-            registerToy(&raiz);
+            RegisterBehavior();
         }
         if(opcion==8){
-            imprimirArbol(raiz);
+            ListsBehavior();
         }
         if(opcion==9){
+            registerToy(&raiz);
+        }
+        if(opcion==10){
+            imprimirArbol(raiz);
+        }
+        if(opcion==11){
             exit=1;
             printf("Muchas gracias Regrese Luego");
         }
@@ -61,11 +69,14 @@ void Menu(){
 }
 int main()
 {
-//    Menu();
-    ListsElfs();
+    Menu();
+//    ListsElfs();
 //RegisterElf();
+//ListsKids();
+//changeKid();
 //RegisterElf();
-    EditElf("40",2,"SIHAN");
-    ListsElfs();
+//changeElf();
+//    EditElf("40",2,"SIHAN");
+//    ListsElfs();
     return 0;
 }

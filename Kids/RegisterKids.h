@@ -15,6 +15,10 @@ struct kid
     char age[20];
     char needs[40];
 };
+
+void changeElf();
+void EditKid(char *id ,int option,char *newValue);
+
 void saveKidFile(struct kid kid1);
 void ListsKids();
 void RegisterKid();

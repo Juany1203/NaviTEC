@@ -14,7 +14,7 @@ struct elf
     char functions[40];
     char startDate[20];
 };
-
+void changeKid();
 void saveElfFile(struct elf elf1);
 void ListsElfs();
 void RegisterElf();

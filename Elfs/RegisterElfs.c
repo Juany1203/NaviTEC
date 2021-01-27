@@ -109,6 +109,30 @@ void ListsElfs(){
     fclose (infile);
 
 }
+void changeElf(){
+    char newValue[20];
+    int option;
+    char id[20];
+
+
+    printf("\n.Este es el menu para editar un Ayudante de Santa\n"
+           "Estas son las opciones\n"
+    "1.Editar la identificacion del ayudante\n"
+    "2.Editar el Nombre Completo del ayudante\n"
+    "3.Editar la posicion del ayudante\n"
+    "4.Editar las funciones del ayudante\n"
+    "5.Editar la fecha de ingreso del ayudante\n");
+
+    printf(".Ahora ingrese la identificacion   del ayudante que desea modificar:\n");
+    scanf("%s",&id);
+
+    printf(".Ingrese  la opcion que desea cambiar:\n");
+    scanf("%d",&option);
+
+    printf("2.Ingrese el Nuevo valor ha ser cambiado:\n");
+    scanf("%s",&newValue);
+    EditElf(id,option,newValue);
+}
 
 void EditElf(char *id ,int option,char *newValue){
     FILE *infile;

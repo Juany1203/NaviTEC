@@ -129,6 +129,37 @@ void ListsKids(){
 
 
 
+
+
+
+
+void changeKid(){
+    char newValue[20];
+    int option;
+    char id[20];
+
+
+    printf("\n.Este es el menu para editar un Niño de Santa\n"
+           "Estas son las opciones\n"
+           "1.Editar la identificacion del Niño o Niña\n"
+           "2.Editar el Nombre Completo del Niño o Niña\n"
+           "3.Editar Nombre de usuario del Niño o Niña\n"
+           "4.Editar el email del Niño o Niña\n"
+           "5.Editar el cumpleaños del Niño o Niña\n"
+           "6.Editar la edad del Niño o Niña\n"
+           "7.Editar las necesidades  del Niño o Niña\n");
+
+    printf(".Ahora ingrese la identificacion   del Niño o Niña que desea modificar:\n");
+    scanf("%s",&id);
+
+    printf("Ingrese  la opcion que desea cambiar:\n");
+    scanf("%d",&option);
+
+    printf("Ingrese el Nuevo valor ha ser cambiado:\n");
+    scanf("%s",&newValue);
+    EditKid(id,option,newValue);
+}
+
 void EditKid(char *id ,int option,char *newValue){
     FILE *infile;
     FILE *file;
@@ -136,7 +167,15 @@ void EditKid(char *id ,int option,char *newValue){
 
     // Open person.dat for reading
     infile = fopen ("kids.dat", "r+");
+
     if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+    file = fopen("kids-tmp.dat", "w");
+
+    if (file == NULL)
     {
         fprintf(stderr, "\nError opening file\n");
         exit (1);
@@ -144,15 +183,18 @@ void EditKid(char *id ,int option,char *newValue){
 
 
 
-    struct kid arr_kid [CountKids()];
-    int amountKids=CountKids();
+    struct kid arr_elf[CountKids()];
+    int amountElfs=CountKids();
     int cont=0;
     int flag=0;
 
 
     // read file contents till end of file
-    while(fread(&input, sizeof(struct kid), 1, infile))
-        if (strcmp(input.id,id)==0){
+    while(fread(&input, sizeof(struct kid), 1, infile)){
+        printf("\nBUSCADO:%s SOLICITADO: %s",input.id,id);
+        int comparacion=strcmp(input.id,id) ;
+        printf("\nCOMPARACION %d",comparacion);
+        if (comparacion==0){
             printf("\nSI LO ENCONTE");
             if(option==1){
                 strcpy(input.id,newValue);
@@ -175,39 +217,31 @@ void EditKid(char *id ,int option,char *newValue){
             if(option==7){
                 strcpy(input.needs,newValue);
             }
-            arr_kid[cont]=input;
-            flag=1;
+//            fwrite (&input, sizeof(struct elf), 1, file);
+//            arr_elf[cont]=input;
+//            flag=1;
         }
         else{
-//            printf("NO LO ENCONTRE");
-            arr_kid[cont]=input;
+            printf("NO LO ENCONTRE");
+//            fwrite (&input, sizeof(struct elf), 1, file);
+//            arr_elf[cont]=input;
         }
-    cont++;
+        fwrite (&input, sizeof(struct kid), 1, file);
+        cont++;
+    }
 
 //        saveKidFile(input);
 //        saveKidFile(input);
 //    fclose (infile);
-    if(flag){
-        fclose(fopen("kids.dat", "w"));
-        printf("\nELIMINE EL ARCHIVO");
-        file = fopen("kids.dat", "w");
-        if (infile == NULL) {
-            fprintf(stderr, "\nError opening file\n");
-            exit(1);
-        }
-        for (int i=0;i<(amountKids);i++) {
-            printf("\nVAMOS A VOLVER A GREGAR UN NIÑO AL SISTEMA");
+    fclose(infile);
+    fclose(file);
+    remove("kids.dat");
+    rename("kids-tmp.dat","kids.dat");
 
-            fwrite(&arr_kid[i], sizeof(struct kid), 1, file);
-        }
-        fclose(file);
-//        remove("")
-    }
-    else{
-        printf("NO EXISTE");
-    }
 
-    fclose (infile);
+
+
+//        fclose (infile);
 
     // close files
 
