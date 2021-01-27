@@ -62,10 +62,10 @@ void Menu(){
 int main()
 {
 //    Menu();
-    tpunteroa raiz;
-    raiz = NULL;
-    rearmarArbol(&raiz);
-    imprimirArbol(raiz);
-    return 0;
+    ListsElfs();
+//RegisterElf();
+//RegisterElf();
+    EditElf("40",2,"SIHAN");
+    ListsElfs();
     return 0;
 }

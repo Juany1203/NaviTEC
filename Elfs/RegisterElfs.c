@@ -88,7 +88,7 @@ void ListsElfs(){
     struct elf input;
 
     // Open person.dat for reading
-    infile = fopen ("elfs.dat", "r");
+    infile = fopen ("elfs-tmp.dat", "r");
     if (infile == NULL)
     {
         fprintf(stderr, "\nError opening file\n");
@@ -140,8 +140,11 @@ void EditElf(char *id ,int option,char *newValue){
 
 
     // read file contents till end of file
-    while(fread(&input, sizeof(struct elf), 1, infile))
-        if (strcmp(input.id,id)==0){
+    while(fread(&input, sizeof(struct elf), 1, infile)){
+        printf("\nBUSCADO:%s SOLICITADO: %s",input.id,id);
+        int comparacion=strcmp(input.id,id) ;
+        printf("\nCOMPARACION %d",comparacion);
+        if (comparacion==0){
             printf("\nSI LO ENCONTE");
             if(option==1){
                 strcpy(input.id,newValue);
@@ -158,16 +161,18 @@ void EditElf(char *id ,int option,char *newValue){
             if(option==5){
                 strcpy(input.startDate,newValue);
             }
-            fwrite (&input, sizeof(struct elf), 1, file);
+//            fwrite (&input, sizeof(struct elf), 1, file);
 //            arr_elf[cont]=input;
 //            flag=1;
         }
         else{
             printf("NO LO ENCONTRE");
-            fwrite (&input, sizeof(struct elf), 1, file);
+//            fwrite (&input, sizeof(struct elf), 1, file);
 //            arr_elf[cont]=input;
         }
+    fwrite (&input, sizeof(struct elf), 1, file);
         cont++;
+    }
 
 //        saveKidFile(input);
 //        saveKidFile(input);
