@@ -70,8 +70,10 @@ void saveElfFile (struct elf elf1){
 //    fwrite (&kid1, sizeof(struct kid), 1, outfile);
 
 
-    if(fwrite != 0)
-        printf("EL AYUDANTE SE GUARDO EN EL SISTEMA CORRECTAMENTE!\n");
+    if(fwrite != 0){
+
+    }
+//        printf("EL AYUDANTE SE GUARDO EN EL SISTEMA CORRECTAMENTE!\n");
     else
         printf("error writing file !\n");
 
@@ -93,7 +95,7 @@ void ListsElfs(){
         exit (1);
     }
 
-    printf("\nEste es el listado de los niños  y niñas en el sistema \n");
+    printf("\nEste es el listado de los Ayudantes  de Santa  el sistema \n");
 
 
     // read file contents till end of file
