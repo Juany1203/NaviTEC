@@ -20,8 +20,10 @@ typedef struct snodoa{
 
 typedef tnodoa *tpunteroa;
 
-void insertarArbol (tpunteroa *raiz, int dato);
+void insertarArbol (tpunteroa *raiz,int dato);
+void registerToy(tpunteroa raiz);
 void imprimirArbol (tpunteroa raiz);
+tpunteroa recorrerArbol (tpunteroa *raiz);
 void borrarArbol (tpunteroa *raiz);
 tpunteroa buscar (tpunteroa raiz, int dato);
 int esHoja (tpunteroa raiz);

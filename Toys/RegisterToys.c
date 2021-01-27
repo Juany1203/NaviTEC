@@ -7,56 +7,73 @@
 #include <string.h>
 #include <stdlib.h>
 #include <string.h>
+#include "stddef.h"
 
 #include <ctype.h>
 #include <stdio.h>
 
-void registerToy(){
+#include <sys/stat.h>   // stat
+#include <stdbool.h>    // bool type
+
+
+
+
+bool file_exists (char *filename) {
+    struct stat   buffer;
+    return (stat (filename, &buffer) == 0);
+}
+
+void registerToy(tpunteroa raiz){
     int codigo;
-    char name[20];
-    char description[40];
-    char category[20];
-    char age[20];
-    int  cost;
     // Input the Word
     printf("\nBienvenido al registro de Juguetes\nPor favor ingrese los datos que se le solicitan a continuacion\n");
 
     printf("1.Ingrese el codigo del  juguete (este tiene que ser un numero):\n");
-    scanf("%d",codigo);
-
-    printf("2.Ingrese el Nombre  del juguete\n");
-    scanf("%s",&name);
-
-    printf("3.Ingrese una descripcion  del juguete:\n");
-    scanf("%s",&description);
-
-    printf("4.Ingrese la categoria  del jueguete:\n");
-    scanf("%s",&category);
-
-    printf("5.Ingrese el rango de edad del juguete:\n");
-    scanf("%s",&age);
-
-    printf("6.Ingrese el coste para la fabricacion del juguete :\n");
-    scanf("%d",cost);
-
-
-
-
-
-//    saveElfFile(elf1);
-
-
-
+    scanf("%d",&codigo);
+    insertarArbol(raiz,codigo);
 }
-
-
 //ARBOL-INSERTAR//
-void insertarArbol (tpunteroa *raiz, int dato){
+void insertarArbol (tpunteroa *raiz,int dato){
     if (*raiz == NULL){
         *raiz = malloc(sizeof(tnodoa));
-        (*raiz)->valor = dato;
+//       (*raiz)->valor = dato;
         (*raiz)->izq = NULL;
         (*raiz)->der = NULL;
+
+
+//    ESTOS SON LAS VARIABLES QUE TENDRAN LOS VALORES DE LAS DATOS SOLICITADOS
+
+        char name[20];
+        char description[40];
+        char category[20];
+        char age[20];
+        int  cost;
+
+//
+////        Aqui solicitamos los demas datos
+//
+
+        printf("2.Ingrese el Nombre  del juguete\n");
+        scanf("%s",&name);
+
+        printf("3.Ingrese una descripcion  del juguete:\n");
+        scanf("%s",&description);
+
+        printf("4.Ingrese la categoria  del jueguete:\n");
+        scanf("%s",&category);
+
+        printf("5.Ingrese el rango de edad del juguete:\n");
+        scanf("%s",&age);
+
+        printf("6.Ingrese el coste para la fabricacion del juguete :\n");
+        scanf("%d",&cost);
+        (*raiz)->valor = dato;
+        strcpy((*raiz)->name,name);
+        strcpy((*raiz)->description,description);
+        strcpy((*raiz)->category,category);
+        strcpy((*raiz)->age,age);
+        (*raiz)->cost = cost;
+
     }else{
         if (dato <= (*raiz)->valor){
             insertarArbol (&(*raiz)->izq, dato);
@@ -67,20 +84,81 @@ void insertarArbol (tpunteroa *raiz, int dato){
 }
 
 
+void getToys(tpunteroa raiz){
+    printf("EST ES EL CATALOGO DE JUGUETES");
+    imprimirArbol(raiz);
+}
+
 
 //ARBOL-IMPRIMIR//
 void imprimirArbol (tpunteroa raiz){
+
     if (raiz != NULL){
         imprimirArbol (raiz->izq);
-        printf("%d, ", raiz->valor);
+        printf("**********************************\n");
+        printf("Codigo Del Juguete:");
+        printf("%d. \n", raiz->valor);
+        printf("Nombre Del Juguete:");
+        printf("%s. \n", raiz->name);
+        printf("Descripcion Del Juguete:");
+        printf("%s. \n", raiz->description);
+        printf("Categoria Del Juguete:");
+        printf("%s. \n", raiz->category);
+        printf("Rango de Edad Del Juguete:");
+        printf("%s. \n", raiz->age);
+//        printf("**********************************\n");
         imprimirArbol (raiz->der);
     }
+}
+
+//ARBOL-IMPRIMIR//
+tpunteroa recorrerArbol (tpunteroa *raiz){
+
+    *raiz = malloc(sizeof(tnodoa));
+
+
+    FILE *infile;
+//        raiz=NUll;
+
+
+    // Open person.dat for reading
+    infile = fopen ("raiz.dat", "r");
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+    // read file contents till end of file
+    while(fread(&raiz, sizeof(tnodoa), 1, infile)){
+        tpunteroa raizReturn;
+        *(&raizReturn) = malloc(sizeof(tnodoa));
+        raizReturn->valor=(*raiz)->valor;
+        raizReturn->der=(*raiz)->der;
+        raizReturn->izq=(*raiz)->izq;
+
+        return raizReturn;
+        printf("Est es el valor  ES LA RAZON,  %d",(*raiz)->valor);
+    }
+
+
+    // close file
+    fclose (infile);
+
+
+//    if (raiz != NULL){
+//        imprimirArbol (raiz->izq);
+//        printf("%d, ", raiz->valor);
+//        imprimirArbol (raiz->der);
+//    }
 }
 
 
 
 //ARBOL-BORRAR//
 void borrarArbol (tpunteroa *raiz){
+
+
     if (*raiz != NULL){
         borrarArbol (&(*raiz)->izq);
         borrarArbol (&(*raiz)->der);
