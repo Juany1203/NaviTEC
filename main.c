@@ -93,9 +93,9 @@ int main()
     //RegisterElf();
 //    DeleteKid("10");
 //    963
-eraseKid();
-// RegisterKid();
-    ListsKids();
+ListsElfs();
+//eraseElf();
+//ListsElfs();
     //changeKid();
     //RegisterElf();
     //changeElf();

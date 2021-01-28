@@ -230,6 +230,75 @@ void EditElf(char *id ,int option,char *newValue){
 
 
 }
+void eraseElf(){
+    char id[20];
+
+
+
+
+    printf(".Ahora ingrese la identificacion   del Ayudante de Santa que desea Eliminar\n");
+    scanf("%s",&id);
+
+
+    DeleteElf(id);
+}
+
+void DeleteElf(char *id){
+    FILE *infile;
+    FILE *file;
+    struct elf input;
+
+    // Open person.dat for reading
+    infile = fopen ("elfs.dat", "r+");
+
+    if (infile == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+    file = fopen("elfs-tmp.dat", "w");
+
+    if (file == NULL)
+    {
+        fprintf(stderr, "\nError opening file\n");
+        exit (1);
+    }
+
+
+
+    struct elf arr_elf[CountElfs()];
+    int amountElfs=CountElfs();
+    int cont=0;
+    int flag=0;
+
+
+    // read file contents till end of file
+    while(fread(&input, sizeof(struct elf), 1, infile)){
+        printf("\nBUSCADO:%s SOLICITADO: %s",input.id,id);
+        int comparacion=strcmp(input.id,id) ;
+        printf("\nCOMPARACION %d",comparacion);
+        if (comparacion==0){
+            printf("\nSI LO ENCONTE");
+
+        }
+        else{
+            printf("NO LO ENCONTRE");
+            fwrite (&input, sizeof(struct elf), 1, file);
+//            arr_elf[cont]=input;
+        }
+//        fwrite (&input, sizeof(struct elf), 1, file);
+        cont++;
+    }
+
+//        saveKidFile(input);
+//        saveKidFile(input);
+//    fclose (infile);
+    fclose(infile);
+    fclose(file);
+    remove("elf.dat");
+    rename("elf-tmp.dat","elf.dat");
+
+}
 
 
 
