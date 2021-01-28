@@ -23,14 +23,16 @@ void Menu()
                "1.Registrar un niño\n"
                "2.Lista de los niños \n"
                "3.Editar la informacion de los niños \n"
-               "4.Registrar un Ayudante de Santa\n"
-               "5.Lista de los Ayudante de Santa \n"
-               "6.Editar a un  Ayudante de Santa \n"
-               "7.Registrar el comportamiento de un niño\n"
-               "8.Listar los comportamientos de todos los niños\n"
-               "9.Registrar un juguete\n"
-               "10.Listar los jueguetes disponibles\n"
-               "11.Salir del Programa\n");
+               "4.Eliminar a un  niño del sistema \n"
+               "5.Registrar un Ayudante de Santa\n"
+               "6.Lista de los Ayudante de Santa \n"
+               "7.Editar a un  Ayudante de Santa \n"
+               "8.Eliminar a un  Ayudante de Santa del sistema \n"
+               "9.Registrar el comportamiento de un niño\n"
+               "10.Listar los comportamientos de todos los niños\n"
+               "11.Registrar un juguete\n"
+               "12.Listar los jueguetes disponibles\n"
+               "13.Salir del Programa\n");
         printf(".Ingrese el numero de la opcion que desea:\n");
         scanf("%d", &opcion);
         if (opcion == 1)
@@ -47,33 +49,41 @@ void Menu()
         }
         if (opcion == 4)
         {
-            RegisterElf();
+            eraseKid();
         }
         if (opcion == 5)
         {
-            changeElf();
+            RegisterElf();
         }
         if (opcion == 6)
         {
-            ListsElfs();
+            changeElf();
         }
         if (opcion == 7)
         {
-            RegisterBehavior();
+            eraseElf();
         }
         if (opcion == 8)
         {
-            ListsBehavior();
+            ListsElfs();
         }
         if (opcion == 9)
         {
-            registerToy(&raiz);
+            RegisterBehavior();
         }
         if (opcion == 10)
         {
-            imprimirArbol(raiz);
+            ListsBehavior();
         }
         if (opcion == 11)
+        {
+            registerToy(&raiz);
+        }
+        if (opcion == 12)
+        {
+            imprimirArbol(raiz);
+        }
+        if (opcion == 13)
         {
             exit = 1;
             printf("Muchas gracias Regrese Luego");
@@ -82,24 +92,6 @@ void Menu()
 }
 int main()
 {
-    //    tpunteroa raiz;
-    //    raiz = NULL;
-    //    rearmarArbol(&raiz);
-    //    RegisterLetter(raiz);
-    //ListsLetter();
-
-//    Menu();
-    //    ListsElfs();
-    //RegisterElf();
-//    DeleteKid("10");
-//    963
-ListsElfs();
-//eraseElf();
-//ListsElfs();
-    //changeKid();
-    //RegisterElf();
-    //changeElf();
-    //    EditElf("40",2,"SIHAN");
-    //    ListsElfs();
+    Menu();
     return 0;
 }
