@@ -247,18 +247,18 @@ void EditKid(char *id ,int option,char *newValue){
 
 
 }
- void eraseKid(){
+void eraseKid(){
 
-     char id[20];
-
-
+    char id[20];
 
 
-     printf(".Ahora ingrese la identificacion   del Niño o Niña que Eliminar\n");
-     scanf("%s",&id);
 
 
-     DeleteKid(id);
+    printf(".Ahora ingrese la identificacion   del Niño o Niña que Eliminar\n");
+    scanf("%s",&id);
+
+
+    DeleteKid(id);
 }
 
 void DeleteKid(char *id){
@@ -380,7 +380,7 @@ int CountKids ()
 
     printf("\nTHE AMOUNT OF KIDS ARE: %d",amount);
 
-   return amount;
+    return amount;
 }
 
 
