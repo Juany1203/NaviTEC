@@ -123,7 +123,7 @@ void saveLettersFile(struct letter letter1)
     if (fwrite != 0)
     {
     }
-    //        printf("EL AYUDANTE SE GUARDO EN EL SISTEMA CORRECTAMENTE!\n");
+        //        printf("EL AYUDANTE SE GUARDO EN EL SISTEMA CORRECTAMENTE!\n");
     else
         printf("error writing file !\n");
 
