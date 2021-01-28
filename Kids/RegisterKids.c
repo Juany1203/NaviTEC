@@ -247,6 +247,19 @@ void EditKid(char *id ,int option,char *newValue){
 
 
 }
+ void eraseKid(){
+
+     char id[20];
+
+
+
+
+     printf(".Ahora ingrese la identificacion   del Niño o Niña que Eliminar\n");
+     scanf("%s",&id);
+
+
+     DeleteKid(id);
+}
 
 void DeleteKid(char *id){
     FILE *infile;

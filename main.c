@@ -91,7 +91,10 @@ int main()
 //    Menu();
     //    ListsElfs();
     //RegisterElf();
-    DeleteKid("10");
+//    DeleteKid("10");
+//    963
+eraseKid();
+// RegisterKid();
     ListsKids();
     //changeKid();
     //RegisterElf();
