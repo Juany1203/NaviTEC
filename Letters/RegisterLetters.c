@@ -22,7 +22,7 @@ void RegisterLetter(tpunteroa raiz)
     int wishList[20];
     char respuesta[20];
     int id = 40;
-    int size = 10;
+    int size = 0;
     int sizeWish = 0;
     char respuesta2[20];
     // Input the Word

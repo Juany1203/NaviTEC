@@ -8,7 +8,7 @@
 #include "Elfs/RegisterElfs.h"
 #include "Behavior/RegisterBehavior.h"
 #include "Toys/RegisterToys.h"
-// #include "Letters/RegisterLetters.h"
+#include "Letters/RegisterLetters.h"
 
 void Menu()
 {
@@ -32,7 +32,9 @@ void Menu()
                "10.Listar los comportamientos de todos los niños\n"
                "11.Registrar un juguete\n"
                "12.Listar los jueguetes disponibles\n"
-               "13.Salir del Programa\n");
+               "13.Crear una carta para santa\n"
+               "14.Listar las cartas para santa\n"
+               "15.Salir del Programa\n");
         printf(".Ingrese el numero de la opcion que desea:\n");
         scanf("%d", &opcion);
         if (opcion == 1)
@@ -85,6 +87,14 @@ void Menu()
         }
         if (opcion == 13)
         {
+            RegisterLetter(raiz);
+        }
+        if (opcion == 14)
+        {
+            ListsLetter();
+        }
+        if (opcion == 15)
+        {
             exit = 1;
             printf("Muchas gracias Regrese Luego");
         }
@@ -93,5 +103,7 @@ void Menu()
 int main()
 {
     Menu();
+//    ListsLetter();
+
     return 0;
 }
