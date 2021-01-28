@@ -8,14 +8,16 @@
 #include "Elfs/RegisterElfs.h"
 #include "Behavior/RegisterBehavior.h"
 #include "Toys/RegisterToys.h"
-#include "Letters/RegisterLetters.h"
+// #include "Letters/RegisterLetters.h"
 
-void Menu(){
-    int exit=0;
+void Menu()
+{
+    int exit = 0;
     tpunteroa raiz;
     raiz = NULL;
     rearmarArbol(&raiz);
-    while (!exit){
+    while (!exit)
+    {
         int opcion;
         printf("\n.Este es el Menu principal de NaviTEC,Tengo las siguientes opciones\n"
                "1.Registrar un niño\n"
@@ -30,60 +32,71 @@ void Menu(){
                "10.Listar los jueguetes disponibles\n"
                "11.Salir del Programa\n");
         printf(".Ingrese el numero de la opcion que desea:\n");
-        scanf("%d",&opcion);
-        if(opcion==1){
+        scanf("%d", &opcion);
+        if (opcion == 1)
+        {
             RegisterKid();
         }
-        if(opcion==2){
+        if (opcion == 2)
+        {
             ListsKids();
         }
-        if(opcion==3){
+        if (opcion == 3)
+        {
             changeKid();
         }
-        if(opcion==4){
+        if (opcion == 4)
+        {
             RegisterElf();
         }
-        if(opcion==5){
+        if (opcion == 5)
+        {
             changeElf();
         }
-        if(opcion==6){
+        if (opcion == 6)
+        {
             ListsElfs();
         }
-        if(opcion==7){
+        if (opcion == 7)
+        {
             RegisterBehavior();
         }
-        if(opcion==8){
+        if (opcion == 8)
+        {
             ListsBehavior();
         }
-        if(opcion==9){
+        if (opcion == 9)
+        {
             registerToy(&raiz);
         }
-        if(opcion==10){
+        if (opcion == 10)
+        {
             imprimirArbol(raiz);
         }
-        if(opcion==11){
-            exit=1;
+        if (opcion == 11)
+        {
+            exit = 1;
             printf("Muchas gracias Regrese Luego");
         }
-
     }
 }
 int main()
 {
-//    tpunteroa raiz;
-//    raiz = NULL;
-//    rearmarArbol(&raiz);
-//    RegisterLetter(raiz);
-ListsLetter();
+    //    tpunteroa raiz;
+    //    raiz = NULL;
+    //    rearmarArbol(&raiz);
+    //    RegisterLetter(raiz);
+    //ListsLetter();
 
 //    Menu();
-//    ListsElfs();
-//RegisterElf();
-//ListsKids();
-//changeKid();
-//RegisterElf();
-//changeElf();
-//    EditElf("40",2,"SIHAN");
-//    ListsElfs();
+    //    ListsElfs();
+    //RegisterElf();
+    DeleteKid("10");
+    ListsKids();
+    //changeKid();
+    //RegisterElf();
+    //changeElf();
+    //    EditElf("40",2,"SIHAN");
+    //    ListsElfs();
     return 0;
 }

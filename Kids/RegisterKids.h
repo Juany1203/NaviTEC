@@ -15,6 +15,9 @@ struct kid
     char age[20];
     char needs[40];
 };
+void eraseKid();
+
+void DeleteKid(char *id);
 
 void changeElf();
 void EditKid(char *id ,int option,char *newValue);
