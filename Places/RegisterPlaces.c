@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-
+#include <string.h>
 
 
 // A utility function that creates
@@ -322,6 +322,100 @@ void dijkstra(struct Graph* graph, int src)
     // print the calculated shortest distances
     printArr(dist, V);
 }
+
+
+
+
+
+
+
+void RegisterPlace(int currentNode){
+    int node;
+    char id[20];
+    char fullName[40];
+    char username[20];
+    char email[20];
+    char birthday[20];
+    char age[20];
+    char needs[50];
+    // Input the Word
+    printf("\nBienvenido al registro de Lugares\nPor favor ingrese los datos que se le solicitan a continuacion\n");
+
+    printf("Los codigos de los lugares se generan automaticos asi que no es necesario que lo ingrese \n");
+//    scanf("%s",&id);
+
+    printf("1.Ingrese el codigo del lugar \n");
+    scanf("%s",&id);
+
+    printf("2.Ingrese el Nombre de lugar\n");
+    scanf("%s",&fullName);
+
+    printf("3.Ingrese el codigo postal\n");
+    scanf("%s",&username);
+
+
+
+
+
+
+    struct place place1 ;
+    place1.node=currentNode;
+    strcpy(place1.codigo,id);
+    strcpy(place1.name,fullName);
+    strcpy(place1.postalCode,username);
+
+    savePlaceFile(place1);
+
+
+
+}
+
+
+
+
+void savePlaceFile (struct place kid1){
+    FILE *outfile;
+
+    // open file for writing
+    outfile = fopen ("places.dat", "a");
+    if (outfile == NULL)
+    {
+        fprintf(stderr, "\nError opend file\n");
+        exit (1);
+    }
+
+    // write struct to file
+
+
+
+    fwrite (&kid1, sizeof(struct place), 1, outfile);
+//    fwrite (&kid1, sizeof(struct kid), 1, outfile);
+
+
+    if(fwrite != 0){
+        printf("EL LUGAR  SE GUARDO EN EL SISTEMA CORRECTAMENTE!\n");
+        printf("El codigo del lugar guardado %d",kid1.codigo);
+    }
+    else {
+        printf("error writing file !\n");
+    }
+    // close file
+    fclose (outfile);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

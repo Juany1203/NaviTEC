@@ -123,4 +123,17 @@ void printArr(int dist[], int n);
 // distances of shortest paths from src to all
 // vertices. It is a O(ELogV) function
 void dijkstra(struct Graph* graph, int src);
+
+struct place
+{
+    int node;
+    char codigo[20];
+    char name[40];
+    char postalCode[20];
+
+};
+
+void savePlaceFile(struct place kid1);
+void ListsPlace();
+void RegisterPlace(int currentNode);
 #endif //NAVITEC_REGISTERPLACES_H

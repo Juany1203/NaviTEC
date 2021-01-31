@@ -13,6 +13,7 @@
 void Menu()
 {
     int exit = 0;
+    int currentPlace=1;
     tpunteroa raiz;
     raiz = NULL;
     rearmarArbol(&raiz);
@@ -34,7 +35,8 @@ void Menu()
                "12.Listar los jueguetes disponibles\n"
                "13.Crear una carta para santa\n"
                "14.Listar las cartas para santa\n"
-               "15.Salir del Programa\n");
+               "15.Listar las cartas para santa\n"
+               "16.Salir del Programa\n");
         printf(".Ingrese el numero de la opcion que desea:\n");
         scanf("%d", &opcion);
         if (opcion == 1)
@@ -95,6 +97,11 @@ void Menu()
         }
         if (opcion == 15)
         {
+            RegisterPlace(currentPlace);
+            currentPlace++;
+        }
+        if (opcion == 16)
+        {
             exit = 1;
             printf("Muchas gracias Regrese Luego");
         }
@@ -103,6 +110,27 @@ void Menu()
 int main()
 {
     Menu();
+
+//
+//
+//    int V = 15;
+//    struct Graph* graph = createGraph(V);
+//    addEdge(graph, 0, 1, 4);
+//    addEdge(graph, 3, 7, 8);
+//    addEdge(graph, 1, 2, 8);
+//    addEdge(graph, 1, 7, 11);
+//    addEdge(graph, 2, 3, 7);
+//    addEdge(graph, 2, 8, 2);
+//    addEdge(graph, 2, 5, 4);
+//    addEdge(graph, 3, 4, 9);
+//    addEdge(graph, 3, 5, 14);
+//    addEdge(graph, 4, 5, 10);
+//    addEdge(graph, 5, 6, 2);
+//    addEdge(graph, 6, 7, 1);
+//    addEdge(graph, 6, 8, 6);
+//    addEdge(graph, 7, 8, 7);
+//
+//    dijkstra(graph, 0);
 //    ListsLetter();
 
     return 0;
